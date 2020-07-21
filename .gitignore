@@ -1,0 +1,8 @@
+venv
+.vscode
+secret.env
+*.log
+**/*.pyc
+__pycache__
+result
+*.egg-info
