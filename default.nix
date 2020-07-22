@@ -6,19 +6,18 @@
   }) {}
 }:
 let
-  name = "discord-talkingstick-bot";
+  machnix = import (builtins.fetchGit {
+    url = "https://github.com/DavHau/mach-nix/";
+    ref = "2.1.0";
+  });
 in
-  pkgs.python37Packages.buildPythonApplication {
-    pname = name;
+  machnix.buildPythonApplication rec {
+    pname = "discord-talkingstick-bot";
     version = "0.1.0";
-    src = builtins.path { path = ./.; name = name; };
-    propagatedBuildInputs = [ pkgs.python37Packages.discordpy ];
+    src = builtins.path { path = ./.; name = pname; };
+    requirements = builtins.readFile "${src}/requirements.in";
+
     checkPhase = ''
       python -m unittest tests/*.py
     '';
-    meta = {
-      description = ''
-        A discord bot for one-person-at-a-time communication in discord voice chats.
-      '';
-    };
   }
