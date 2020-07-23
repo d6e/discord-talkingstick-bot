@@ -9,7 +9,7 @@
   * command line timer parameter
 - [ ] next member command
 
-# Nixos Install
+## Nixos Install
 I named the following `discordbot.nix` and imported it into to my configuration.nix.
 ```
 { pkgs, ... }:
