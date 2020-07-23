@@ -19,8 +19,10 @@ machnix.buildPythonApplication rec {
   pname = "discord-talkingstick-bot";
   version = "0.1.0";
   src = builtins.path { path = ./.; name = pname; };
-  requirements = builtins.readFile "${src}/requirements.in";
-
+  requirements = builtins.readFile "${src}/requirements.txt";
+  pypi_deps_db_commit = "709034f2cd196b485289af4b1a604fc5fa00b14b";
+  pypi_deps_db_sha256 = "0rgdqh72frgzcbak19xhlhn1gglj42wvpm8v6gimxr6c4lh9xdvn";
+  _default = "wheel,sdist";
   checkPhase = ''
     python -m unittest tests/*.py
   '';
