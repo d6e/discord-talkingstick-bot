@@ -23,6 +23,11 @@ machnix.buildPythonApplication rec {
   pypi_deps_db_commit = "709034f2cd196b485289af4b1a604fc5fa00b14b";
   pypi_deps_db_sha256 = "0rgdqh72frgzcbak19xhlhn1gglj42wvpm8v6gimxr6c4lh9xdvn";
   _default = "wheel,sdist";
+  providers = if pkgs.stdenv.isAarch64 || pkgs.stdenv.isAarch64 then { 
+    multidict = "sdist";   # not compatible with arm
+    websockets = "sdist";  # not compatible with arm
+    yarl = "sdist";  # not compatible with arm
+  } else {};
   checkPhase = ''
     python -m unittest tests/*.py
   '';
